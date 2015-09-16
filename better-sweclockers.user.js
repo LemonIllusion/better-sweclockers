@@ -3,7 +3,7 @@
 // @namespace       http://alling.se
 //
 //                  *** Don't forget to update version below as well! ***
-// @version         2.1.1
+// @version         2.1
 //                  *** Don't forget to update version below as well! ***
 //
 // @match           http://*.sweclockers.com/*
@@ -25,7 +25,7 @@ var Better_SweClockers = (function() {
 "use strict";
 
 // Needed for update check. Remember to update!
-var version = "2.1.1";
+var version = "2.1";
 
 // "Constants"
 var ABOVE_STANDARD_CONTROL_PANEL = 0;
@@ -148,6 +148,7 @@ var BSC = {
         "preventAccidentalSignout":             true,
         "removeLastNewline":                    true,
         "removeMobileSiteDisclaimer":           true,
+        "removePageLinkAnchors":                false,
         "searchWithGoogle":                     true,
         "quoteSignatureButtons":                false,
         "quoteSignatureTip":                    quoteSignatureTipDefault,
@@ -596,6 +597,12 @@ function scrollToElementWithID(id) {
 function getURLAnchor() {
     var parts = document.location.href.split("#");
     return parts.length > 1 ? parts[1] : null;
+}
+
+function removeAnchor(link) {
+    if (link instanceof HTMLAnchorElement) {
+        link.href = link.href.replace(/#.*$/, "");
+    }
 }
 
 function createLink(text, href, title) {
@@ -2007,6 +2014,22 @@ function improvePaginationButtons() {
     ';
 }
 
+function canRemovePageLinkAnchors() {
+    return !!qSel(".articleNavi .pageList");
+}
+
+function removePageLinkAnchors() {
+    log("Removing page link anchors ...");
+    var pageList = qSel(".articleNavi .pageList");
+    if (!!pageList) {
+        var pageLinks = pageList.querySelectorAll("a");
+        for (var i = 0, len = pageLinks.length; i < len; i++) {
+            removeAnchor(pageLinks[i]);
+        }
+    } else addException(new ElementNotFoundException("Could not remove page link anchors because the page list element (.articleNavi .pageList) could not be found."));
+    log("Done removing page link anchors.");
+}
+
 function extractUsernameFromPost(post) {
     try {
         var authLink = post.querySelector(".name a");
@@ -2592,7 +2615,8 @@ function insertOptionsForm() {
                                 settingsCheckbox("betterPaginationButtons", "Förbättrade bläddringsknappar i forumet") +
                                 settingsCheckbox("highlightUnreadPMs", "Framhäv olästa PM i inkorgen") +
                                 settingsCheckbox("addPMLinks", "PM-knappar i foruminlägg") +
-                                settingsCheckbox("quoteSignatureButtons", 'Citera signatur-knappar i foruminlägg')
+                                settingsCheckbox("quoteSignatureButtons", 'Citera signatur-knappar i foruminlägg') +
+                                settingsCheckbox("removePageLinkAnchors", "Ta bort <pre>#content</pre>-ankare i länkar till andra sidor i en artikel")
                             ) +
                             '<label for="Better_SweClockers_Settings.quoteSignatureTip">Text att infoga efter citat av signatur:</label>\
                             <textarea id="Better_SweClockers_Settings.quoteSignatureTip">'+BSC.settings.quoteSignatureTip+'</textarea>'
@@ -3062,6 +3086,10 @@ function run() {
 
             if (optionIsTrue("preventAccidentalSignout")) {
                 BSC.addDOMOperation(canPreventAccidentalSignout, preventAccidentalSignout);
+            }
+
+            if (optionIsTrue("removePageLinkAnchors")) {
+                BSC.addDOMOperation(canRemovePageLinkAnchors, removePageLinkAnchors);
             }
 
             if (isInThread()) {
