@@ -159,7 +159,8 @@ var BSC = {
         "quoteSignatureTip":                    quoteSignatureTipDefault,
         "textareaHeight":                       360,
         "uninterestingForums":                  {},
-        "version":                              version // the version that saved the settings
+        "version":                              version, // the version that saved the settings
+		"replaceFollowed":                      false
     },
 
     content: {
@@ -1450,6 +1451,20 @@ function enableSearchWithGoogle() {
     } else addException(new ElementNotFoundException("Could not insert Google search button because its intended parent (#search .searchField) could not be found."));
 }
 
+function canReplaceFollowed() {
+    return qSel(".option.watched") instanceof HTMLLIElement && !qSel("#Better_SweClockers_FollowedButton");
+}
+
+function replaceFollowed() {
+   var followedButton = qSel(".option.watched");
+   log("Modifying followed button...");
+   BSC.addCSS(".header .profile .watched .icon {background-position: -400px -100px;}");
+   followedButton.querySelector("a").innerHTML = "Mina inlägg";
+   followedButton.querySelector("a").href = "/profil/inlagg";
+   followedButton.id = "Better_SweClockers_FollowedButton";
+   log("Modified followed button.");
+}
+
 function showColorPalette(show) {
     var innerWrapper = byID("Better_SweClockers_ColorPaletteInner");
     var button = byID("Better_SweClockers_Button_ColorPalette");
@@ -2648,7 +2663,8 @@ function insertOptionsForm() {
                                 settingsCheckbox("preventAccidentalSignout", "Förhindra oavsiktlig utloggning") +
                                 settingsCheckbox("dogeInQuoteFix", 'Visa Doge-smiley i citat (istället för en Imgur-länk) <span class="Better_SweClockers_ShibeText">         win</span>') +
                                 settingsCheckbox("searchWithGoogle", "Knapp för att söka med Google istället för standardsökfunktionen") +
-                                settingsCheckbox("openImagesInNewTab", "Öppna bilder i ny flik (istället för att förstora dem)")
+                                settingsCheckbox("openImagesInNewTab", "Öppna bilder i ny flik (istället för att förstora dem)") +
+								settingsCheckbox("replaceFollowed", "Byt ut \"Följda trådar\" mot \"Mina inlägg\"")
                             ) +
                             '<textarea hidden id="Better_SweClockers_Settings.uninterestingForumsRaw">' + JSON.stringify(keysWithTrueValue(BSC.settings.uninterestingForums)) + '</textarea>'
                         ) +
@@ -3113,6 +3129,10 @@ function run() {
             if (optionIsTrue("searchWithGoogle")) {
                 BSC.addDOMOperation(canEnableSearchWithGoogle, enableSearchWithGoogle);
             }
+			
+			if (optionIsTrue("replaceFollowed")) {
+				BSC.addDOMOperation(canReplaceFollowed, replaceFollowed);
+			}
 
             if (isOnSettingsPage()) {
                 BSC.addDOMOperation(canInsertSettingsLinkLi, insertSettingsLinkLi);
