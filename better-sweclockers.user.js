@@ -1910,7 +1910,7 @@ function insertAdvancedControlPanel() {
             case "Better_SweClockers_Button_Noparse":
                 TA.BSC_wrapBB("[noparse]", "[/noparse]"); break;
             case "Better_SweClockers_Button_Strike":
-                TA.BSC_wrapBB("[s]", "[/s]"); break;
+                TA.BSC_wrapBB("[strike]", "[/strike]"); break;
             case "Better_SweClockers_Button_Cmd":
                 TA.BSC_wrapBB('[cmd]', '[/cmd]'); break;
             case "Better_SweClockers_Button_Code":
