@@ -68,6 +68,13 @@ Knapparna size, color, font och quote är genvägar till BB-koderna med samma na
 
 
 
+[size="3"][b]spoiler[/b][/size]
+
+Knappen [b]spoiler[/b] omger markerad text med [cmd]spoiler[/cmd]-taggen, vilket gör att användaren själv aktivt måste välja att visa texten. Så bör man göra med spoilers, mycket långa textstycken (till exempel långa citat eller output från något program som man klistrar in) och dylikt.
+[code][noparse][spoiler][/noparse][color="#24F"]markerad text[/color][noparse][/spoiler][/noparse][/code]
+
+
+
 [size="3"][b]noparse[/b][/size]
 
 Knappen [b]noparse[/b] omger markerad text med [cmd]noparse[/cmd]-taggen, vilket gör att [noparse]eventuella [b]BB-taggar[/b] ignoreras[/noparse].
@@ -160,18 +167,33 @@ Det går även att använda [b]URL IMG[/b] mitt i en rad.
 
 [b]Före:[/b]
 [code][color="#24F"][noparse]
-http://www.sweclockers.com/images/logo.png
+http://i.imgur.com/oZHfIXh.png
 
-http://www.sweclockers.com/image/red/2013/02/21/GeForce_GTX_Titan-1460-processed.jpg?t=articleFull&k=8ba63b24
+http://www.sweclockers.com/gfx/static/info/contact-us.jpg
 [/noparse][/color][/code]
 [b]Efter:[/b]
-[code][noparse][url="http://www.sweclockers.com/images/logo.png"][img]http://www.sweclockers.com/images/logo.png[/img][/url]
+[code][noparse][url="http://i.imgur.com/oZHfIXh.png"][img]http://i.imgur.com/oZHfIXh.png[/img][/url]
 
-[url="http://www.sweclockers.com/image/red/2013/02/21/GeForce_GTX_Titan-1460-processed.jpg?t=articleFull&k=8ba63b24"][img]http://www.sweclockers.com/image/red/2013/02/21/GeForce_GTX_Titan-1460-processed.jpg?t=articleFull&k=8ba63b24[/img][/url][/noparse][color="#24F"]|[/color][/code]
+[url="http://www.sweclockers.com/gfx/static/info/contact-us.jpg"][img]http://www.sweclockers.com/gfx/static/info/contact-us.jpg[/img][/url][/noparse][color="#24F"]|[/color][/code]
 [b]Resultat:[/b]
-[url="http://www.sweclockers.com/images/logo.png"][img]http://www.sweclockers.com/images/logo.png[/img][/url]
+[url="http://i.imgur.com/oZHfIXh.png"][img]http://i.imgur.com/oZHfIXh.png[/img][/url]
 
-[url="http://www.sweclockers.com/image/red/2013/02/21/GeForce_GTX_Titan-1460-processed.jpg?t=articleFull&k=8ba63b24"][img]http://www.sweclockers.com/image/red/2013/02/21/GeForce_GTX_Titan-1460-processed.jpg?t=articleFull&k=8ba63b24[/img][/url]
+[url="http://www.sweclockers.com/gfx/static/info/contact-us.jpg"][img]http://www.sweclockers.com/gfx/static/info/contact-us.jpg[/img][/url]
+
+
+
+[size="3"][b]YouTube[/b][/size]
+
+Knappen [b]YouTube[/b] bäddar in en YouTube-video med markerad text som URL.
+
+[color="#C15200"][b]–– Exempel ––[/b][/color]
+
+[b]Före:[/b]
+[code][color="#24F"][noparse]https://www.youtube.com/watch?v=QyttjPCPkE0[/noparse][/color][/code]
+[b]Efter:[/b]
+[code][noparse][youtube][/noparse][color="#24F"][noparse]https://www.youtube.com/watch?v=QyttjPCPkE0[/noparse][/color][noparse][/youtube][/noparse][/code]
+[b]Resultat:[/b]
+[youtube]https://www.youtube.com/watch?v=QyttjPCPkE0[/youtube]
 
 
 
@@ -301,6 +323,7 @@ Fältet [b]Specialtecken[/b] innehåller ett antal knappar som kan användas fö
     [li][url="http://sv.wikipedia.org/wiki/Bindestreck"][b]Hårt bindestreck[/b][/url] (‑): Liknar ett bindestreck, men texten kan inte radbrytas vid det. Värdefullt i ord som [i]Sandy Bridge‑E[/i] och [i]G‑Sync[/i].[/li]
     [li][url="http://sv.wikipedia.org/wiki/Tankstreck"][b]Kort tankstreck[/b][/url] (–): Talstreck; intervall; minustecken. Kan skrivas med [cmd]Alt+0150[/cmd] på numpaden (på Windows).[/li]
     [li][url="http://sv.wikipedia.org/wiki/L%C3%A5ngt_tankstreck"][b]Långt tankstreck[/b][/url] (—): Kan skrivas med [cmd]Alt+0160[/cmd].[/li]
+    [li][url="http://sv.wikipedia.org/wiki/Uteslutningstecken"][b]Ellipsis[/b][/url] (…): Uteslutningstecken; markerar avbrutna ord eller meningar.[/li]
     [li][url="http://sv.wikipedia.org/wiki/Approximation"][b]Ungefär lika med[/b][/url] (≈): Approximation.[/li]
     [li][url="http://sv.wikipedia.org/wiki/Multiplikationstecken"][b]Multiplikationstecken[/b][/url] (×): Multiplikation. Kan skrivas med [cmd]Alt+0215[/cmd].[/li]
     [li][url="http://sv.wikipedia.org/wiki/Halvh%C3%B6g_punkt"][b]Halvhög punkt[/b][/url] (·): Multiplikation.[/li]
@@ -508,6 +531,11 @@ Denna funktion tar bort [cmd]#content[/cmd]-ankaret i varje länk till andra sid
 
 
 
+[size="3"][b]2.3.9  Framhäv egna inlägg[/b][/size]
+
+Denna funktion lägger till en tjock orange linje längs vänsterkanten av alla ens egna inlägg. Det gör det lättare att identifiera inlägg man själv har skrivit.
+
+
 
 [size="4"][color="#24F"]▶[/color] [b]2.4  Forumfilter[/b][/size]
 
@@ -600,6 +628,19 @@ Temat hämtas från Blargmodes server, precis som vanligt, så man får alltid d
 
 Denna funktion låser höjden på alla reklambanners, så att de inte trycker ner sidan när de laddas. Detta möjliggörs genom det magiska direktivet [cmd][noparse]@run-at document-start[/noparse][/cmd], som BSC 2.0 är baserat på. Höjden låses till respektive banners ursprungshöjd, så reklamen högst upp blir kapad om den är högre än sin container. Därmed kan det se lite fult ut. Men i gengäld slipper man misclicka på reklam 40 gånger om dagen.
 
+
+
+
+[size="4"][color="#24F"]▶[/color] [b]2.9  Lås artikelbildens höjd[/b][/size]
+
+Denna funktion reserverar utrymme åt bilden högst upp i varje artikel, så att man slipper att sidan hoppar när den laddas. Funktionen är inte aktiv per default, då den främst är användbar på långsamma enheter.
+
+
+
+
+[size="4"][color="#24F"]▶[/color] [b]2.10  Göm thumbnailvyn högst upp[/b][/size]
+
+Denna funktion döljer thumbnailvyn högst upp, som är irriterande på till exempel iOS, då den blockerar scrollning om man försöker scrolla med fingret just där den är. Denna funktion är inte aktiv per default.
 
 
 
@@ -756,9 +797,21 @@ Den bästa funktionen i hela Better SweClockers. Se 2.8.
 
 
 
+[size="3"][b]Lås artikelbildens höjd[/b][/size]
+
+Se 2.9.
+
+
+
 [size="3"][b]Utför DOM-operationer under sidladdning[/b][/size]
 
 Rekommenderas generellt. Om du kryssar ur denna körs alla DOM-operationer (exempelvis infogning av knappar) först [i]efter[/i] att hela sidan laddats.
+
+
+
+[size="3"][b]Göm thumbnailvyn högst upp[/b][/size]
+
+Se 2.10.
 
 
 
