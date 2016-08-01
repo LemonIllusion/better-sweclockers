@@ -8,7 +8,6 @@
 //
 // @match           http://*.sweclockers.com/*
 // @match           https://*.sweclockers.com/*
-// @exclude         *cdn.sweclockers.com/*
 // @description     Provides extra functionality to the SweClockers website and increases usability enormously by locking the height of the ads.
 // @run-at          document-start
 // ==/UserScript==
@@ -144,8 +143,6 @@ var BSC = {
         "favoriteLinksRaw":                     favoriteLinksRawDefault,
         "fixAdHeight":                          true,
         "highlightUnreadPMs":                   true,
-        "highlightOwnPosts":                    true,
-        "hideFacebookButtons":                  false,
         "largerTextareaHeight":                 720,
         "openImagesInNewTab":                   false,
         "preventAccidentalSignout":             true,
@@ -1582,7 +1579,9 @@ function openImagesInNewTab() {
         }
     }
     var bbImageDivs = document.querySelectorAll(".bbImage.isZoomable");
-    bbImageDivs.forEach(makeOpenable);
+    for (var i = 0; i < bbImageDivs.length; i++) {
+        makeOpenable(bbImageDivs[i]);
+    }
 }
 
 function handleDarkTheme() {
@@ -2084,17 +2083,6 @@ function addPMLinks() {
     log("Done inserting PM links.");
 }
 
-function highlightOwnPosts() {
-    log("Styling own posts...");
-    // Relies on posts having .isReader if they are user's own.
-    BSC.CSS += "\
-        .forumPost.isReader {\
-            box-shadow: -10px 0 0 #C15200;\
-        }\
-    ";
-    log("Done styling own posts.");
-}
-
 function getReplyURL() {
     var quickReplyForm = qSel("#quickreply form");
     if (!!quickReplyForm) {
@@ -2325,6 +2313,7 @@ function addMainCSS() {
             background: -o-linear-gradient(top, rgba(249,248,244,1) 0%,rgba(229,228,224,1) 100%);\
             background: -ms-linear-gradient(top, rgba(249,248,244,1) 0%,rgba(229,228,224,1) 100%);\
             background: linear-gradient(to bottom, rgba(249,248,244,1) 0%,rgba(229,228,224,1) 100%);\
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=\'#f9f8f4\', endColorstr=\'#e5e4e0\',GradientType=0 );\
         }\
         #Better_SweClockers_Button_Google:hover {\
             background: rgb(252,251,247);\
@@ -2334,6 +2323,7 @@ function addMainCSS() {
             background: -o-linear-gradient(top, rgba(252,251,247,1) 0%,rgba(242,241,237,1) 100%);\
             background: -ms-linear-gradient(top, rgba(252,251,247,1) 0%,rgba(242,241,237,1) 100%);\
             background: linear-gradient(to bottom, rgba(252,251,247,1) 0%,rgba(242,241,237,1) 100%);\
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=\'#fcfbf7\', endColorstr=\'#f2f1ed\',GradientType=0 );\
         }\
         #Better_SweClockers_Button_Google span:nth-child(3n+1) { color: #176dee; }\
         #Better_SweClockers_Button_Google span:nth-child(4n+2) { color: #da4532; }\
@@ -2625,7 +2615,6 @@ function insertOptionsForm() {
                                 settingsCheckbox("betterPaginationButtons", "Förbättrade bläddringsknappar i forumet") +
                                 settingsCheckbox("highlightUnreadPMs", "Framhäv olästa PM i inkorgen") +
                                 settingsCheckbox("addPMLinks", "PM-knappar i foruminlägg") +
-                                settingsCheckbox("highlightOwnPosts", "Framhäv egna inlägg") +
                                 settingsCheckbox("quoteSignatureButtons", 'Citera signatur-knappar i foruminlägg') +
                                 settingsCheckbox("removePageLinkAnchors", "Ta bort <pre>#content</pre>-ankare i länkar till andra sidor i en artikel")
                             ) +
@@ -2634,9 +2623,8 @@ function insertOptionsForm() {
                         ) +
                         subFieldset("Diverse",
                             checkboxList(
-                                settingsCheckbox("fixAdHeight", "<strong>Lås höjden på reklam etc</strong>") +
+                                settingsCheckbox("fixAdHeight", "<strong>Lås höjden på reklam</strong>") +
                                 settingsCheckbox("DOMOperationsDuringPageLoad", "Utför DOM-operationer under sidladdning") +
-                                settingsCheckbox("hideFacebookButtons", "Dölj Facebookdelningsknappar") +
                                 settingsCheckbox("enableFilter", "Forumfilter för <strong>Nytt i forumet</strong>") +
                                 settingsCheckbox("preventAccidentalSignout", "Förhindra oavsiktlig utloggning") +
                                 settingsCheckbox("dogeInQuoteFix", 'Visa Doge-smiley i citat (istället för en Imgur-länk) <span class="Better_SweClockers_ShibeText">         win</span>') +
@@ -2946,7 +2934,7 @@ function enableFilterControls() {
 }
 
 function fixAdHeight() {
-    log("Fixing banner heights etc...");
+    log("Fixing banner heights...");
     // Some of these rules are only temporary to prevent "element jumping",
     // and must be restored once the ads have loaded. This will be done by showSideBannersAgain().
     BSC.CSS += "\
@@ -2955,7 +2943,7 @@ function fixAdHeight() {
             max-height: "+BSC.bannerHeightTop+"px;\
             overflow: hidden;\
         }\
-        .pushList.pushListInternal {\
+        .pushListInternal {\
             margin-bottom: "+ (16 + BSC.bannerHeightSide) +"px;\
         }\
         .ad.adInsider {\
@@ -2965,28 +2953,14 @@ function fixAdHeight() {
             overflow: hidden;\
             display: none;\
         }\
-        .greyContentShare, .threadShare {\
-            height: 60px;\
-        }\
-        .adModule-1 {\
-            height: 360px;\
-        }\
     ";
-    log("Fixed banner heights etc.");
+    log("Fixed banner heights.");
 }
 
 function showSideBannersAgain() {
     // Restore the CSS that was temporarily set by fixAdHeight():
-    BSC.addCSS(".pushList.pushListInternal { margin-bottom: 8px; }\
-                .ad.adInsider              { display: block; }");
-}
-
-function hideFacebookButtons() {
-    BSC.CSS += "\
-        .greyContentShare, .threadShare {\
-            display: none;\
-        }\
-    ";
+    BSC.addCSS(".pushListInternal { margin-bottom: 8px; }\
+                .ad.adInsider     { display: block; }");
 }
 
 function insertPseudoConsole() {
@@ -3057,9 +3031,6 @@ function prepare() {
         }
         if (optionIsTrue("enableFavoriteLinks")) {
             makeRoomForFavoriteLinks();
-        }
-        if (optionIsTrue("hideFacebookButtons")) {
-            hideFacebookButtons();
         }
         updateStyleElement();
     } catch(e) {
@@ -3202,10 +3173,6 @@ function finish(eventName) {
         if (isInThread()) {
             if (optionIsTrue("addPMLinks")) {
                 addPMLinks();
-            }
-
-            if (optionIsTrue("highlightOwnPosts")) {
-                highlightOwnPosts();
             }
 
             if (optionIsTrue("quoteSignatureButtons")) {
