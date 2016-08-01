@@ -3056,10 +3056,6 @@ function run() {
         } else {
             log("Checking which DOM operations to run...");
 
-            if (BSC.pseudoConsole) {
-                insertPseudoConsole();
-            }
-
             if (optionIsTrue("enableFavoriteLinks")) {
                 BSC.addDOMOperation(canInsertFavoriteLinks, insertFavoriteLinks);
             }
@@ -3128,6 +3124,9 @@ function finish(eventName) {
         log("Detected "+eventName+" event.");
         performDOMOperations();
         stopPerformingDOMOperations();
+        if (BSC.pseudoConsole) {
+            insertPseudoConsole();
+        }
         assignDOMVariables();
         TAFocusDetection();
         handleDarkThemeTimer();
