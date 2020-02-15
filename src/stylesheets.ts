@@ -22,6 +22,7 @@ import darkThemeToggle from "./stylesheets/dark-theme-toggle.scss";
 import doge from "./stylesheets/doge.scss";
 import downForMaintenance from "./stylesheets/down-for-maintenance.scss";
 import editingTools from "./stylesheets/editing-tools.scss";
+import postHeaderColors from "./stylesheets/post-header-colors.scss";
 import hideFooter from "./stylesheets/hide-footer.scss";
 import highlightOwnPosts from "./stylesheets/highlight-own-posts.scss";
 import improvedCorrections from "./stylesheets/improved-corrections.scss";
@@ -103,6 +104,10 @@ const STYLESHEETS = {
     editing_tools: stylesheet({
         condition: ALWAYS,
         css: editingTools,
+    }),
+    post_header_colors: stylesheet({
+        condition: ALWAYS,
+        css: postHeaderColors,
     }),
     textarea_size_toggle: stylesheet({
         condition: ALWAYS,
