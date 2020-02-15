@@ -185,6 +185,7 @@ export const preferences = {
         anniversary: `SweClockers 20 år`,
         guides: `Guider`,
         popular_galleries: `Bubblare i Galleriet`,
+        ads: `Reklam (laddas alltid in, men kan döljas)`,
         new_in_forum_side: `Nytt i forumet (till höger)`,
         new_in_market: `Senaste privatannonserna`,
         new_in_test_lab: `Nytt i testlabbet`,

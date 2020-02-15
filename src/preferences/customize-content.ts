@@ -30,6 +30,11 @@ export default {
         default: true,
         label: T.preferences.customize_content.popular_galleries,
     }),
+    ads: new BooleanPreference({
+        key: "customize_content_ads",
+        default: true,
+        label: T.preferences.customize_content.ads,
+    }),
     new_in_forum_side: new BooleanPreference({
         key: "customize_content_new_in_forum_side",
         default: true,

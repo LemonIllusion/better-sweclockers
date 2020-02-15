@@ -28,6 +28,7 @@ import improvedCorrections from "./stylesheets/improved-corrections.scss";
 import improvedImageControls from "./stylesheets/improved-image-controls.scss";
 import improvedPaginationButtons from "./stylesheets/improved-pagination-buttons.scss";
 import lockHeights from "./stylesheets/lock-heights.scss";
+import hideAds from "./stylesheets/hide-ads.scss";
 import main from "./stylesheets/main.scss";
 import mentionEveryone from "./stylesheets/mention-everyone.scss";
 import preferencesLink from "./stylesheets/preferences-link.scss";
@@ -178,6 +179,10 @@ const STYLESHEETS = {
     customize_content_popular_galleries: stylesheet({
         condition: () => false === Preferences.get(P.customize_content._.popular_galleries),
         css: hideBySelector(SELECTOR.sideColumnPopularGalleries),
+    }),
+    customize_content_ads: stylesheet({
+        condition: () => false === Preferences.get(P.customize_content._.ads),
+        css: hideAds,
     }),
     customize_content_new_in_forum_side: stylesheet({
         condition: () => false === Preferences.get(P.customize_content._.new_in_forum_side),
