@@ -33,6 +33,7 @@ import mentionEveryone from "./stylesheets/mention-everyone.scss";
 import preferencesLink from "./stylesheets/preferences-link.scss";
 import preferences from "./stylesheets/preferences.scss";
 import replaceFollowedThreadsLink from "./stylesheets/replace-followed-threads-link.scss";
+import blockPosts from "./stylesheets/block-posts.scss";
 import textareaSizeToggle from "./stylesheets/textarea-size-toggle.scss";
 import threadStatusTooltips from "./stylesheets/thread-status-tooltips.scss";
 import webSearchButton from "./stylesheets/web-search-button.scss";
@@ -136,6 +137,10 @@ const STYLESHEETS = {
         condition: () => Preferences.get(P.general._.replace_followed_threads_link),
         css: replaceFollowedThreadsLink,
     }),
+        block_posts: stylesheet({
+                condition: ALWAYS,
+                css: blockPosts,
+        }),
     proofread_forum_posts: stylesheet({
         condition: () => isInEditMode && Preferences.get(P.advanced._.proofread_forum_posts),
         css: STYLE_PROOFREADING,

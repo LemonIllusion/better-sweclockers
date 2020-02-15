@@ -2,6 +2,7 @@ import {
     BooleanPreference,
     IntegerPreference,
     MultichoicePreference,
+    DictionaryPreference,
     StringPreference,
 } from "ts-preferences";
 
@@ -44,6 +45,11 @@ export default {
         default: false,
         label: T.preferences.general.replace_followed_threads_link,
         description: T.preferences.general.replace_followed_threads_link_description,
+    }),
+        blocked_users: new DictionaryPreference<string, { [k: string]: number }>({
+        key: "blocked_users",
+        label: T.preferences.NO_LABEL,
+        default: {},
     }),
     thread_status_tooltips: new BooleanPreference({
         key: "thread_status_tooltips",
