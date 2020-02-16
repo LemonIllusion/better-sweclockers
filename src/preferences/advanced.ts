@@ -34,6 +34,11 @@ export default {
         label: T.preferences.advanced.improved_image_controls,
         description: T.preferences.advanced.improved_image_controls_description,
     }),
+    post_header_colors: new BooleanPreference({
+        key: "post_header_colors",
+        default: false,
+        label: T.preferences.advanced.post_header_colors,
+    }),
     disable_scroll_restoration: new BooleanPreference({
         key: "disable_scroll_restoration",
         default: false,

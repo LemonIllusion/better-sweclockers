@@ -207,6 +207,7 @@ export const preferences = {
         prevent_accidental_unload_description: `Värdefullt om du råkar klicka på fel länk mitt i ett inlägg`,
         improved_image_controls: `Bättre zoom- och länkikoner i bilder`,
         improved_image_controls_description: `Visa ikoner framför bilder endast när du hovrar över dem`,
+        post_header_colors: `LemonIllusions färgkodade inläggshuvuden [EXPERIMENTELL]`,
         disable_scroll_restoration: `Förhindra webbläsaren från att komma ihåg scrollning`,
         disable_scroll_restoration_description: `Kan vara praktiskt för tangentbordssurfare`,
         down_for_maintenance: `${down_for_maintenance} varje natt mellan 4:30 och 5:10`,

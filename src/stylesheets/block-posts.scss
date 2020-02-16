@@ -1,0 +1,24 @@
+.forumPost.isBlocked_1 .postHeader .cell {
+    background: linear-gradient(#b00000, #900000);
+}
+
+.forumPost.isBlocked_2 {
+    .cell {
+        height: 21px;
+    }
+    .controls:not(.unblock), .main {
+        display: none;
+    }
+}
+
+.forumPost:not(.isBlocked_2) .controls.unblock {
+    display: none;
+}
+
+.forumPost.isBlocked_3 .cell:not(.dateline) {
+    display: none;
+}
+
+.bbQuote.isBlocked_2 .quoteContent {
+    display: none;
+}

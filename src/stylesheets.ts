@@ -22,6 +22,7 @@ import darkThemeToggle from "./stylesheets/dark-theme-toggle.scss";
 import doge from "./stylesheets/doge.scss";
 import downForMaintenance from "./stylesheets/down-for-maintenance.scss";
 import editingTools from "./stylesheets/editing-tools.scss";
+import postHeaderColors from "./stylesheets/post-header-colors.scss";
 import hideFooter from "./stylesheets/hide-footer.scss";
 import highlightOwnPosts from "./stylesheets/highlight-own-posts.scss";
 import improvedCorrections from "./stylesheets/improved-corrections.scss";
@@ -34,6 +35,7 @@ import mentionEveryone from "./stylesheets/mention-everyone.scss";
 import preferencesLink from "./stylesheets/preferences-link.scss";
 import preferences from "./stylesheets/preferences.scss";
 import replaceFollowedThreadsLink from "./stylesheets/replace-followed-threads-link.scss";
+import blockPosts from "./stylesheets/block-posts.scss";
 import textareaSizeToggle from "./stylesheets/textarea-size-toggle.scss";
 import threadStatusTooltips from "./stylesheets/thread-status-tooltips.scss";
 import webSearchButton from "./stylesheets/web-search-button.scss";
@@ -105,6 +107,10 @@ const STYLESHEETS = {
         condition: ALWAYS,
         css: editingTools,
     }),
+    post_header_colors: stylesheet({
+        condition: ALWAYS,
+        css: postHeaderColors,
+    }),
     textarea_size_toggle: stylesheet({
         condition: ALWAYS,
         css: textareaSizeToggle,
@@ -137,6 +143,10 @@ const STYLESHEETS = {
         condition: () => Preferences.get(P.general._.replace_followed_threads_link),
         css: replaceFollowedThreadsLink,
     }),
+        block_posts: stylesheet({
+                condition: ALWAYS,
+                css: blockPosts,
+        }),
     proofread_forum_posts: stylesheet({
         condition: () => isInEditMode && Preferences.get(P.advanced._.proofread_forum_posts),
         css: STYLE_PROOFREADING,

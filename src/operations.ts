@@ -7,6 +7,7 @@ import {
     isInEditMode_forum,
     isInEditMode_market,
     isInEditMode_marketContact,
+    isOnMemberProfile,
     isOnBSCPreferencesPage,
     isOnSweclockersSettingsPage,
     isReadingEditorialContent,
@@ -38,6 +39,8 @@ import insertQuoteSignatureButtons from "./operations/quote-signature-buttons";
 import rememberLocationInMarket from "./operations/remember-location-in-market";
 import removeMobileSiteDisclaimer from "./operations/remove-mobile-site-disclaimer";
 import replaceFollowedThreadsLink from "./operations/replace-followed-threads-link";
+import blockPosts from "./operations/block-posts";
+import insertUserBlockingMenu from "./operations/insert-user-blocking-menu";
 import insertTableToolbarButton from "./operations/table-toolbar-button";
 import insertTextareaSizeToggle from "./operations/textarea-size-toggle";
 import insertWebSearchButton from "./operations/web-search-button";
@@ -220,6 +223,18 @@ const OPERATIONS: readonly Operation<any>[] = [
         condition: () => Preferences.get(P.general._.replace_followed_threads_link),
         dependencies: { followedThreadsLinkTextOrSigninSection: SELECTOR.signinSectionOr(SELECTOR.followedThreadsLinkText) },
         action: replaceFollowedThreadsLink,
+    }),
+    operation({
+        description: "hide posts from blocked users",
+        condition: () => isReadingThread,
+        action: blockPosts,
+        deferUntil: DOMCONTENTLOADED,
+    }),
+    operation({
+        description: "insert blocking menu on member profiles",
+        condition: () => isOnMemberProfile,
+        dependencies: { menuSection: ".sideMenu .menuSection" },
+        action: insertUserBlockingMenu,
     }),
     operation({
         description: "remember location in market",

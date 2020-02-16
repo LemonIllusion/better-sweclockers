@@ -1,0 +1,54 @@
+/* Set color theme elsewhere */
+.forumPost.isGuru .guruFlag,
+.forumPost.isGuru .controls .button.like .score { /* Guru star and guru like counter color */
+	color: #8834A5;
+}
+.forumPost.isLiked .controls .button.like .score { /* Liked post like counter color */
+	color: #2D7D2D;
+}
+
+.forumPost.isAuthor .postHeader .cell {
+    background: linear-gradient(#D96B0F, #B14F00);
+}
+.forumPost.isReader .postHeader .cell {
+    background: linear-gradient(#21A4E9, #0184C9);
+}
+.forumPost.isGuru .postHeader .cell {
+    background: linear-gradient(#8834A5, #681485);
+}
+.forumPost.isLiked .postHeader .cell {
+    background: linear-gradient(#2D7D2D, #196919);
+}
+.forumPost.isAuthor.isReader .postHeader .cell {
+    background: linear-gradient(#D96B0F, #B14F00 49%, #21A4E9 51%, #0184C9);
+}
+.forumPost.isAuthor.isGuru .postHeader .cell {
+    background: linear-gradient(#D96B0F, #B14F00 49%, #8834A5 51%, #681485);
+}
+.forumPost.isAuthor.isLiked .postHeader .cell {
+    background: linear-gradient(#D96B0F, #B14F00 49%, #2D7D2D 51%, #196919);
+}
+.forumPost.isReader.isGuru .postHeader .cell {
+    background: linear-gradient(#21A4E9, #0184C9 49%, #8834A5 51%, #681485);
+}
+.forumPost.isReader.isLiked .postHeader .cell {
+    background: linear-gradient(#21A4E9, #0184C9 49%, #2D7D2D 51%, #196919);
+}
+.forumPost.isGuru.isLiked .postHeader .cell {
+    background: linear-gradient(#8834A5, #681485 49%, #2D7D2D 51%, #196919);
+}
+.forumPost.isAuthor.isReader.isGuru .postHeader .cell {
+    background: linear-gradient(#D96B0F, #B14F00 32%, #21A4E9 34%, #0184C9 65%, #8834A5 67%, #681485);
+}
+.forumPost.isAuthor.isReader.isLiked .postHeader .cell {
+    background: linear-gradient(#D96B0F, #B14F00 32%, #21A4E9 34%, #0184C9 65%, #2D7D2D 67%, #196919);
+}
+.forumPost.isAuthor.isGuru.isLiked .postHeader .cell {
+    background: linear-gradient(#D96B0F, #B14F00 32%, #8834A5 34%, #681485 65%, #2D7D2D 67%, #196919);
+}
+.forumPost.isReader.isGuru.isLiked .postHeader .cell {
+    background: linear-gradient(#21A4E9, #0184C9 32%, #8834A5 34%, #681485 65%, #2D7D2D 67%, #196919);
+}
+.forumPost.isAuthor.isReader.isGuru.isLiked .postHeader .cell {
+    background: linear-gradient(#D96B0F, #B14F00 24%, #21A4E9 26%, #0184C9 49%, #8834A5 51%, #681485 74%, #2D7D2D 76%, #196919);
+}
